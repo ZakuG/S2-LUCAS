@@ -1,0 +1,11 @@
+
+<div style="position: relative; height: 150px;">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+        <h1>Bienvenido al Dashboard</h1>
+        <p>Usuario conectado: {{ usuario }}</p>
+        <button style="margin-right: 5px;" (click)="perfil()">Ir al perfil</button>
+        <button style="margin-right: 5px;" (click)="admin()">Ir al admin (solo administrador)</button>
+        <button (click)="logout()">Cerrar sesión</button>
+    </div>
+</div>
+<app-home></app-home>

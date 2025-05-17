@@ -1,0 +1,47 @@
+<div *ngIf="formSubmitted && formWasValid" class="modal-message">
+          <div class="modal-content">
+            <h3>✔️ ¡Éxito!</h3>
+            <p>Los datos fueron enviados correctamente.</p>
+            <button (click)="formSubmitted = false">Cerrar</button>
+          </div>
+</div>
+<article>
+    <img
+      class="listing-photo"
+      [src]="housingLocation?.photo"
+      alt="Exterior photo of {{housingLocation?.name}}"
+      crossorigin
+    />
+    <section class="listing-description">
+      <h2 class="listing-heading">{{ housingLocation?.name }}</h2>
+      <p class="listing-location">{{ housingLocation?.city }}, {{ housingLocation?.state }}</p>
+    </section>
+    <section class="listing-features">
+      <h2 class="section-heading">About this housing location</h2>
+      <ul>
+        <li>Units available: {{ housingLocation?.availableUnits }}</li>
+        <li>Does this location have wifi: {{ housingLocation?.wifi }}</li>
+        <li>Does this location have laundry: {{ housingLocation?.laundry }}</li>
+        <li>Publicada: {{ housingLocation?.date | date }}</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Apply Now to live here</h2>
+      <form [formGroup]="formAngular" (submit)="onSubmit()">
+        <label for="first-name">First Name</label>
+        <input id="first-name" type="text" formControlName="firstName" />
+        <label for="last-name">Last Name</label>
+        <input id="last-name" type="text" formControlName="lastName" />
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" />
+        <div>
+        <label *ngIf="formSubmitted && !formWasValid" style="color: red;">
+          ⚠️ Por favor, asegúrate de rellenar todos los campos y de que el correo electrónico sea válido. ⚠️ 
+        </label>
+        </div>
+        <h1><button type="submit" class="primary">Apply now</button></h1>
+        
+      </form>
+    </section>
+</article>

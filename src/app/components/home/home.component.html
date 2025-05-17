@@ -1,0 +1,60 @@
+<section>
+  <mat-sidenav-container class="example-container" [hasBackdrop]="hasBackdrop.value">
+    <mat-sidenav #sidenav [mode]="mode.value!" [position]="position.value!">
+      <p style="margin-left: 5px;"><button mat-raised-button (click)="sidenav.toggle()">LogIn</button></p>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+    <form style="margin-top: 15px; margin-left: 5px;">
+      <mat-form-field appearance="outline">
+        <mat-label>Filter by city</mat-label>
+        <input matInput placeholder="City" #cityInput />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" style="margin-left: 5px;">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="selectedStatus" name="status">
+          <mat-option value="">All</mat-option>
+          <mat-option value="Rent">Rent</mat-option>
+          <mat-option value="Sold">Sold</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" style="margin-left: 5px;">
+        <mat-label>Type</mat-label>
+        <mat-select [(ngModel)]="selectedType" name="type">
+          <mat-option value="">All</mat-option>
+          <mat-option value="Home">Home</mat-option>
+          <mat-option value="Department">Department</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" style="margin-left: 5px;">
+        <mat-label>Min. rooms</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="minRooms"
+          name="minRooms"
+          min="1"
+          (input)="minRooms = minRooms < 1 ? 1 : minRooms"
+        />
+      </mat-form-field>
+      
+      <button mat-raised-button color="primary" type="button" (click)="filterResults(cityInput.value)" style="margin-left: 5px;">Search</button>
+      <button mat-raised-button (click)="sidenav.toggle()" style="float: right;">More Filter</button>
+
+    </form>
+  <mat-radio-group class="example-radio-group">
+    <section class="results">
+      <app-housing-location 
+        *ngFor="let housinglocation of filteredLocationList"
+        [housingLocation]="housinglocation"
+      >
+      </app-housing-location>
+    </section>
+  </mat-radio-group>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</section>
+  

@@ -1,0 +1,29 @@
+<div style="position: relative; height: 550px;">
+  <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+    <label>Username (admin): lucas</label>
+    <br />
+    <label>Username (user): mati</label>
+    <br />
+    <label>Password (ambos): 123456</label>
+    <h2>Iniciar Sesión</h2>
+    <form (submit)="login(usernameInput.value, passwordInput.value); $event.preventDefault()">
+      <label>Username</label>
+      <br />
+      <input #usernameInput matInput placeholder="Username" name="username" />
+      <br />
+      <label>Password</label>
+      <br />
+      <input #passwordInput matInput type="password" placeholder="********" name="password" />
+      <br />
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide() ? 'password' : 'text'" />
+        <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
+      <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+      <button mat-raised-button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
